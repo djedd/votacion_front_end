@@ -1,0 +1,56 @@
+<div class="panel panel-primary" *ngIf="mandato">
+  <div class="panel-heading">
+    {{pageTitle + ': ' + mandato.abreviacion}}
+  </div>
+  <div class="panel-body">
+    <form [formGroup]="mandatoForm" (ngSubmit)="submitRegistration()" novalidate>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field1">ID:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="id_mandato" required readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field2">Abreviación:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="abreviacion" required autofocus/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field3">Descripción:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="descripcion" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field4">Fecha Creación:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="fecha_creacion" required/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="validMessage != ''">
+        <h3 class="has-info">{{validMessage}}</h3>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Actualizar Mandato
+      </button>
+    </form>
+  </div>
+  <div class="panel-footer">
+    <a class="btn btn-default" (click)='onBack()' style='width:80px'>
+      <i class="glyphicon glyphicon-chevron-left">Atrás</i>
+    </a>
+  </div>
+</div>

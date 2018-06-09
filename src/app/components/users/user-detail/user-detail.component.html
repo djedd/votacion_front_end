@@ -1,0 +1,76 @@
+<div class="panel panel-primary" *ngIf="usuario">
+  <div class="panel-heading">
+    {{pageTitle + ': ' + usuario.nombre + ' ' + usuario.apellido}}
+  </div>
+  <div class="panel-body">
+    <form [formGroup]="usuarioForm" (ngSubmit)="submitRegistration()" novalidate>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field1">ID:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="id_usuario" required readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field2">Nombre:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="nombre" required autofocus/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field3">Apellido:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="apellido" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field4">Identifiación:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="identificacion" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field5">Tipo:</label>
+            </div>
+            <div class="col-md-6">
+              <select class="form-control select" formControlName="tipo" required>
+                <option *ngFor="let type of userTypes" [value]="type.name">
+                  {{ type.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label for="field6">Fecha Registro:</label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" formControlName="fecha_registro" required readonly/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="validMessage != ''">
+        <h3 class="has-info">{{validMessage}}</h3>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Actualizar Usuario
+      </button>
+    </form>
+  </div>
+  <div class="panel-footer">
+    <a class="btn btn-default" (click)='onBack()' style='width:80px'>
+      <i class="glyphicon glyphicon-chevron-left">Atrás</i>
+    </a>
+  </div>
+</div>

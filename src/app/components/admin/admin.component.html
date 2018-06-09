@@ -1,0 +1,87 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="text-center">{{pageTitle}}</h4>
+  </div>
+  <div class="panel-body">
+    <div class="row pull-right">
+      <div class="col-md-5">
+        <a class="btn btn-primary" [routerLink]="['create-mandato']">
+          <em class="fa fa-plus"></em> Agregar mandato</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">Filtrar por: </div>
+      <div class="col-md-5">
+        <input type="text" [(ngModel)]='listFilter'>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <h3>Filtrado por: {{ listFilter }}</h3>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            <button class="btn btn-primary" (click)='toggleImage()'>
+              {{showImage ? 'Ocultar ':'Mostrar '}} Votos
+            </button>
+          </th>
+          <th>ID:</th>
+          <th>Abreviación: </th>
+          <th>Descripción:</th>
+          <th>Fecha Creación:</th>
+          <th class="text-center">
+            <em class="fa fa-cog"></em>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mandato of filteredMandatos; let k = index">
+          <td class="text-center">
+            <p *ngIf="showImage">
+              {{mandato.cantidad}}
+            </p>
+          </td>
+          <td> {{mandato.id_mandato}} </td>
+          <td>
+            <a [routerLink]="['mandato', mandato.id_mandato]">
+              {{mandato.abreviacion}}
+            </a>
+          </td>
+          <td> {{mandato.descripcion}} </td>
+          <td> {{mandato.fecha_creacion}} </td>
+          <td align="center">
+            <a class="btn btn-default" [routerLink]="['mandato', mandato.id_mandato]">
+              <em class="fa fa-pencil" aria-hidden="true"></em>
+            </a>
+            <a class="btn btn-danger" (click)='deleteMandato(mandato.id_mandato)'>
+              <em class="fa fa-trash" aria-hidden="true"></em>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="errorMessage != ''">
+      <h3 class="has-info text-center">{{errorMessage}}</h3>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col col-xs-4">
+        Pagina 1 of 5
+      </div>
+      <div class="col col-xs-8">
+        <ul class="pagination pull-right">
+          <li>
+            <a href="#">«</a>
+          </li>
+          <li>
+            <a href="#">»</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
